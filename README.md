@@ -7,15 +7,15 @@ For now, it supports Insert, HasWord, HasPrefix and WordsByPrefix methods.
 WordsByPrefix collects all words with given prefix without usage of recursion while search.
 
 ```go
-t := NewTrie()
+tree := NewTrie()
 
 t.Insert("go", "golang", "gopher", "python", "pythonista", "grow", "gg", "glitch", "glass")
 
-t.HasPrefix("gol") // return true
-t.HasPrefix("gole") // return false
+hasPrefix := tree.HasPrefix("gol") // return true
+hasPrefix = tree.HasPrefix("gene") // return false
 
-t.HasWord("gopher") // return true
-t.HasWord("oh") // return false
+hasWord := tree.HasWord("gopher") // return true
+hasWord = tree.HasWord("foo") // return false
 
-words := t.WordsByPrefix("go") // return []string{"go", "gopher", "golang"}
+words := tree.WordsByPrefix("go") // return []string{"go", "gopher", "golang"}
 ```
