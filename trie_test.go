@@ -7,9 +7,7 @@ import (
 
 func prepareTrie() *Trie {
 	t := NewTrie()
-	for _, word := range []string{"hello", "hell", "hamster", "harris", "harrier", "harmore", "harmless"} {
-		t.Insert(word)
-	}
+	t.Insert("hello", "hell", "hamster", "harris", "harrier", "harmore", "harmless", "he")
 	return t
 }
 
@@ -61,7 +59,7 @@ func TestTrie_Insert(t *testing.T) {
 func TestTrie_WordsByPrefix(t *testing.T) {
 	tree := prepareTrie()
 	words := tree.WordsByPrefix("he")
-	expected := []string{"hell", "hello"}
+	expected := []string{"he", "hell", "hello"}
 
 	if !reflect.DeepEqual(words, expected) {
 		t.Fatalf("words should be equal to %v", expected)

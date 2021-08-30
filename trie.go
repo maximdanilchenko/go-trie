@@ -18,7 +18,13 @@ func NewTrie() *Trie {
 }
 
 // Insert inserts word to the tree. Each letter becomes tree node (if not exists)
-func (t *Trie) Insert(word string) {
+func (t *Trie) Insert(word ...string) {
+	for _, w := range word {
+		t.insertWord(w)
+	}
+}
+
+func (t *Trie) insertWord(word string) {
 	current := t.root
 	for _, letter := range word {
 		node, ok := current.children[letter]
@@ -97,6 +103,9 @@ func (s *stack) pop() *traversHelper {
 
 func (t *trieNode) travers(prefix string) []string {
 	var words []string
+	if t.isWord {
+		words = []string{prefix}
+	}
 	stack := stack{{t, prefix}}
 	for {
 		th := stack.pop()
